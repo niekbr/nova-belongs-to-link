@@ -15,6 +15,7 @@
         "laravel-nova": "^1.0"
     },
     "dependencies": {
+        "@riophae/vue-treeselect": "0.0.38",
         "vue": "^2.5.0"
     }
 }

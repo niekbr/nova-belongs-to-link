@@ -1,23 +1,18 @@
 <template>
     <default-field :field="field" :errors="errors">
         <template slot="field">
-            <input
-                :id="field.name"
-                type="text"
-                class="w-full form-control form-input form-input-bordered"
-                :class="errorClasses"
-                :placeholder="field.name"
-                v-model="value"
-            />
+            <treeselect v-model="value" :multiple="field.multiple || false" :options="field.options"></treeselect>
         </template>
+
     </default-field>
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 export default {
-    mixins: [FormField, HandlesValidationErrors],
+    components: { Treeselect },
 
     props: ['resourceName', 'resourceId', 'field'],
 
@@ -26,7 +21,7 @@ export default {
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-            this.value = this.field.value || ''
+            this.value = this.field.value || null;
         },
 
         /**
